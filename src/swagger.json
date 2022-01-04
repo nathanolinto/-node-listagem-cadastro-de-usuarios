@@ -1,0 +1,219 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "CadUser",
+        "description": "Essa é uma documentação sobre a CadUser API",
+        "version": "1.0.0",
+        "contact": {
+            "email": "nathanolinto@gmail.com"
+        }
+    },
+    "paths": {
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a user",
+                "description": "Create a new user",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "User name sample",
+                                    "email": "User.sample@test.com"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List all categories",
+                "description": "List all categories",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "header",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "admin": {
+                                                "type": "boolean"
+                                            },
+                                            "created_at": {
+                                                "type": "string"
+                                            },
+                                            "updated_at": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "example": {
+                                            "id": "3392ba6f-dd20-4210-ae57-f2c573e2e3aa",
+                                            "name": "User name sample",
+                                            "email": "User.sample@test.com",
+                                            "admin": false,
+                                            "created_at": "2021-12-31T16:01:29.534Z",
+                                            "updated_at": "2021-12-31T16:01:57.100Z"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}":{
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Return user by ID",
+                "description": "Return user by ID",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }, 
+                    "404": {
+                        "description": "User already exists"
+                    }
+                }
+            }
+        },
+        "/users/{user_id}/admin": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Turn an User as Admin",
+                "description": "Turn an User as Admin",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string",
+                        "format": "uuid"
+                      }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        },
+                                        "email": {
+                                            "type": "string"
+                                        },
+                                        "admin": {
+                                            "type": "boolean"
+                                        },
+                                        "created_at": {
+                                            "type": "string"
+                                        },
+                                        "updated_at": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }, 
+                    "404": {
+                        "description": "User already exists"
+                    }
+                }
+            }
+        }
+    }
+}
